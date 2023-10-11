@@ -2,10 +2,10 @@ import java.time.LocalDate;
 
 public class BankAccount {
 
-    private String firstName = "";
-    private String lastName = "";
-    private LocalDate dateOfBirth;
-    private int accountNumber = 0;
+    private String firstName = "Firstname";
+    private String lastName = "Lastname";
+    private LocalDate dateOfBirth = LocalDate.parse("1970-01-01");
+    private int accountNumber = 123456789;
     private int balance = 0;
 
 
@@ -36,15 +36,15 @@ public class BankAccount {
         return this.balance;
     }
 
-//    Below will be the setters
+//    Below are the setters.
     public void setFirstName(String firstName){
         this.firstName = firstName;
     }
     public void setLastName(String lastName){
         this.lastName = lastName;
     }
-    public void setDateOfBirth(LocalDate dateOfBirth){
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirth(String dateOfBirth){
+        this.dateOfBirth = LocalDate.parse(dateOfBirth);
     }
     public void setAccountNumber(int accountNumber){
         this.accountNumber = accountNumber;
