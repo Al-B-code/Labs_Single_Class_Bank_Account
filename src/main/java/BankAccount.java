@@ -68,8 +68,14 @@ public class BankAccount {
 
 // PayInterest method
     public void payInterest(){
-        String accountType = this.accountType;
-        this.balance *= 1.05;
+        if (this.getAccountType().equals("Current Account")){
+            this.balance *= 1.05;
+        }
+        if (this.getAccountType().equals("Savings Account")){
+            this.balance *= 1.10;
+        }
+
+
     }
 
 //

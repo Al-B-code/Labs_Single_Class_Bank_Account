@@ -129,6 +129,16 @@ public class BankAccountTest {
         assertThat(bankAccount.getBalance()).isEqualTo(110.25);
     }
 
+    void accountTypeAltersPayInterest(){
+        BankAccount bankAccount = new BankAccount();
+        bankAccount.setBalance(100);
+        bankAccount.setAccountType("Savings Account");
+        bankAccount.payInterest();
+        assertThat(bankAccount.getBalance()).isEqualTo(110);
+        bankAccount.payInterest();
+        assertThat(bankAccount.getBalance()).isEqualTo(121);
+    }
+
 
 
 
