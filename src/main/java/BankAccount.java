@@ -11,12 +11,6 @@ public class BankAccount {
 
     public BankAccount(){
 
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.accountNumber = accountNumber;
-        this.balance = balance;
-
     }
 
 //    Below are the getters.
