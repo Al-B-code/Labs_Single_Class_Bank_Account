@@ -6,7 +6,7 @@ public class BankAccount {
     private String lastName = "Lastname";
     private LocalDate dateOfBirth = LocalDate.parse("1970-01-01");
     private int accountNumber = 123456789;
-    private int balance = 0;
+    private double balance = 0;
 
 
     public BankAccount(){
@@ -26,7 +26,7 @@ public class BankAccount {
     public int getAccountNumber(){
         return this.accountNumber;
     }
-    public int getBalance(){
+    public double getBalance(){
         return this.balance;
     }
 
@@ -56,4 +56,8 @@ public class BankAccount {
         this.balance -= withdrawAmount;
     }
 
+// PayInterest method
+    public void payInterest(){
+        this.balance *= 1.05;
+    }
 }
