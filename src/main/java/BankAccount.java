@@ -8,6 +8,7 @@ public class BankAccount {
     private int accountNumber = 123456789;
     private double balance = 0;
     private String accountType = "Current Account";
+    private double overdraft = -500;
 
 
     public BankAccount(){
@@ -60,8 +61,13 @@ public class BankAccount {
         this.balance += depositAmount;
     }
 //    Withdraw method
-    public void withdraw(int withdrawAmount){
-        this.balance -= withdrawAmount;
+    public int withdraw(int withdrawAmount){
+        if ((this.balance - withdrawAmount) > overdraft){
+            this.balance -= withdrawAmount;
+            return 0;
+        }
+            return 1;
+
     }
 
 
@@ -74,8 +80,6 @@ public class BankAccount {
         if (this.getAccountType().equals("Savings Account")){
             this.balance *= 1.10;
         }
-
-
     }
 
 //

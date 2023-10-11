@@ -138,6 +138,15 @@ public class BankAccountTest {
         bankAccount.payInterest();
         assertThat(bankAccount.getBalance()).isEqualTo(121);
     }
+    @Test
+    void overdraft(){
+        BankAccount bankAccount = new BankAccount();
+        bankAccount.withdraw(100);
+        assertThat(bankAccount.getBalance()).isEqualTo(-100);
+        bankAccount.withdraw(500);
+        assertThat(bankAccount.withdraw(500)).isEqualTo(1);
+        assertThat(bankAccount.getBalance()).isEqualTo(-100);
+    }
 
 
 
