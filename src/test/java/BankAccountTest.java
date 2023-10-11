@@ -110,6 +110,12 @@ public class BankAccountTest {
     @Test
     void canPayInterest(){
 //        This will test the payinterest method on the bank account object.
+        BankAccount bankAccount = new BankAccount();
+        bankAccount.setBalance(100);
+        bankAccount.payInterest();
+        assertThat(bankAccount.getBalance()).isEqualTo(105);
+        bankAccount.payInterest();
+        assertThat(bankAccount.getBalance()).isEqualTo(110.25);
     }
 
 
