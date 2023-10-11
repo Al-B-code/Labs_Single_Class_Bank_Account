@@ -102,6 +102,8 @@ public class BankAccountTest {
         assertThat(bankAccount.getBalance()).isEqualTo(50);
         bankAccount.withdraw(50);
         assertThat(bankAccount.getBalance()).isEqualTo(0);
+        bankAccount.withdraw(50);
+        assertThat(bankAccount.getBalance()).isEqualTo(-50);
 
     }
 
