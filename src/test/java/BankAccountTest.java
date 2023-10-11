@@ -40,6 +40,10 @@ public class BankAccountTest {
         BankAccount bankAccount = new BankAccount();
         assertThat(bankAccount.getBalance()).isEqualTo(0);
     }
+    void canGetAccountType(){
+        BankAccount bankAccount = new BankAccount();
+        assertThat((bankAccount.getAccountType())).isEqualTo("Current Account");
+    }
 
 
 //      There should be a setter for each property: so setFirstName, setLastName, setDOB, setAccountNumber
@@ -76,6 +80,13 @@ public class BankAccountTest {
         BankAccount bankAccount = new BankAccount();
         bankAccount.setBalance(2500);
         assertThat(bankAccount.getBalance()).isEqualTo(2500);
+    }
+    @Test
+    void canSetAccountType(){
+        BankAccount bankAccount = new BankAccount();
+        assertThat(bankAccount.getAccountType()).isEqualTo("Current Account");
+        bankAccount.setAccountType("Savings Account");
+        assertThat((bankAccount.getAccountType())).isEqualTo("Savings Account");
     }
 
 
