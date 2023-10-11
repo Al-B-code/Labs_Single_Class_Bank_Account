@@ -47,4 +47,13 @@ public class BankAccount {
         this.balance = balance;
     }
 
+//    Deposit method
+    public void deposit(int depositAmount){
+        this.balance += depositAmount;
+    }
+//    Withdraw method
+    public void withdraw(int withdrawAmount){
+        this.balance -= withdrawAmount;
+    }
+
 }

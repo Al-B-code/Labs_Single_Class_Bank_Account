@@ -33,7 +33,7 @@ public class BankAccountTest {
     @Test
     void canGetAccountNumber(){
         BankAccount bankAccount = new BankAccount();
-        assertThat(bankAccount.getAccountNumber()).isEqualTo(1234567890);
+        assertThat(bankAccount.getAccountNumber()).isEqualTo(123456789);
     }
     @Test
     void canGetBalance(){
@@ -84,18 +84,24 @@ public class BankAccountTest {
     void canDeposit(){
 //        This will test the deposit method on the bank account object.
 
-        assertThat(bankAccount.balance()).isEqualTo(0);
+        BankAccount bankAccount = new BankAccount();
+        assertThat(bankAccount.getBalance()).isEqualTo(0);
         bankAccount.deposit(100);
-        assertThat(bankAccount.balance()).isEqualTo(100);
+        assertThat(bankAccount.getBalance()).isEqualTo(100);
+        bankAccount.deposit(50);
+        assertThat(bankAccount.getBalance()).isEqualTo(150);
     }
 
     @Test
     void canWithdraw(){
 //        This will test the deposit method on the bank account object.
+        BankAccount bankAccount = new BankAccount();
         bankAccount.setBalance(100);
-        assertThat(bankAccount.balance()).isEqualTo(100);
-        bankAccount.withdraw(100);
-        assertThat(bankAccount.balance()).isEqualTo(0);
+        assertThat(bankAccount.getBalance()).isEqualTo(100);
+        bankAccount.withdraw(50);
+        assertThat(bankAccount.getBalance()).isEqualTo(50);
+        bankAccount.withdraw(50);
+        assertThat(bankAccount.getBalance()).isEqualTo(0);
 
     }
 
