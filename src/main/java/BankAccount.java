@@ -5,13 +5,25 @@ public class BankAccount {
     private String firstName = "Firstname";
     private String lastName = "Lastname";
     private LocalDate dateOfBirth = LocalDate.parse("1970-01-01");
-    private int accountNumber = 123456789;
+    private int accountNumber;
     private double balance = 0;
-    private String accountType = "Current Account";
-    private double overdraft = -500;
+    private String accountType;
+    private double overdraft;
 
 
-    public BankAccount(){
+    public BankAccount(String firstName,
+                       String lastName,
+                       String dateOfBirth,
+                       int accountNumber,
+                       String accountType,
+                       double overdraft) {
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = LocalDate.parse(dateOfBirth);
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.overdraft = overdraft;
 
     }
 

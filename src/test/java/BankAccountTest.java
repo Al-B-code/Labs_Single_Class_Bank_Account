@@ -1,9 +1,12 @@
 import org.assertj.core.api.Assert;
 import org.assertj.core.internal.bytebuddy.asm.Advice;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
+import static java.lang.Math.round;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat; // Will be used at one point
 
 
@@ -11,37 +14,47 @@ public class BankAccountTest {
 
 //    There should be a getter for each property so: getFirstName, getLastName, getDOB, GetAccountNumber,
 //    and getAccountBalance
+
+
+
+    BankAccount bankAccount;
+
+    @BeforeEach
+    public void setUp(){
+        bankAccount = new BankAccount(
+                "Firstname",
+                "Lastname",
+                "1970-01-01",
+                123456789,
+                "Current Account",
+                -500);
+    }
+
     @Test
     void canGetFirstName(){
 //      Test getFirstName
-        BankAccount bankAccount = new BankAccount();
         //Default value for firstname is an "Firstname"
         assertThat(bankAccount.getFirstName()).isEqualTo("Firstname");
     }
     @Test
     void canGetLastName(){
 //      Test getLastName
-        BankAccount bankAccount = new BankAccount();
         //Default value for firstname is an "Firstname"
         assertThat(bankAccount.getLastName()).isEqualTo("Lastname");
     }
     @Test
     void canGetDateOfBirth(){
-        BankAccount bankAccount = new BankAccount();
         assertThat(bankAccount.getDateOfBirth()).isEqualTo(LocalDate.of(1970, 01, 01));
     }
     @Test
     void canGetAccountNumber(){
-        BankAccount bankAccount = new BankAccount();
         assertThat(bankAccount.getAccountNumber()).isEqualTo(123456789);
     }
     @Test
     void canGetBalance(){
-        BankAccount bankAccount = new BankAccount();
         assertThat(bankAccount.getBalance()).isEqualTo(0);
     }
     void canGetAccountType(){
-        BankAccount bankAccount = new BankAccount();
         assertThat((bankAccount.getAccountType())).isEqualTo("Current Account");
     }
 
@@ -50,40 +63,34 @@ public class BankAccountTest {
 //      and setAccountBalance
     @Test
     void canSetFirstName(){
-        BankAccount bankAccount = new BankAccount();
         bankAccount.setFirstName("John");
         assertThat(bankAccount.getFirstName()).isEqualTo("John");
     }
 
     @Test
     void canSetLastName(){
-        BankAccount bankAccount = new BankAccount();
         bankAccount.setLastName("Smith");
         assertThat(bankAccount.getLastName()).isEqualTo(("Smith"));
     }
 
     @Test
     void canSetDateOfBirth(){
-        BankAccount bankAccount = new BankAccount();
         bankAccount.setDateOfBirth("2023-02-08");
         assertThat(bankAccount.getDateOfBirth()).isEqualTo(LocalDate.of(2023,2,8));
     }
     @Test
     void canSetAccountNumber(){
-        BankAccount bankAccount = new BankAccount();
         bankAccount.setAccountNumber(987654321);
         assertThat(bankAccount.getAccountNumber()).isEqualTo(987654321);
     }
 
     @Test
     void canSetBalance(){
-        BankAccount bankAccount = new BankAccount();
         bankAccount.setBalance(2500);
         assertThat(bankAccount.getBalance()).isEqualTo(2500);
     }
     @Test
     void canSetAccountType(){
-        BankAccount bankAccount = new BankAccount();
         assertThat(bankAccount.getAccountType()).isEqualTo("Current Account");
         bankAccount.setAccountType("Savings Account");
         assertThat((bankAccount.getAccountType())).isEqualTo("Savings Account");
@@ -94,8 +101,6 @@ public class BankAccountTest {
     @Test
     void canDeposit(){
 //        This will test the deposit method on the bank account object.
-
-        BankAccount bankAccount = new BankAccount();
         assertThat(bankAccount.getBalance()).isEqualTo(0);
         bankAccount.deposit(100);
         assertThat(bankAccount.getBalance()).isEqualTo(100);
@@ -106,7 +111,6 @@ public class BankAccountTest {
     @Test
     void canWithdraw(){
 //        This will test the deposit method on the bank account object.
-        BankAccount bankAccount = new BankAccount();
         bankAccount.setBalance(100);
         assertThat(bankAccount.getBalance()).isEqualTo(100);
         bankAccount.withdraw(50);
@@ -121,36 +125,27 @@ public class BankAccountTest {
     @Test
     void canPayInterest(){
 //        This will test the payinterest method on the bank account object.
-        BankAccount bankAccount = new BankAccount();
         bankAccount.setBalance(100);
         bankAccount.payInterest();
         assertThat(bankAccount.getBalance()).isEqualTo(105);
         bankAccount.payInterest();
         assertThat(bankAccount.getBalance()).isEqualTo(110.25);
     }
-
+@Test
     void accountTypeAltersPayInterest(){
-        BankAccount bankAccount = new BankAccount();
         bankAccount.setBalance(100);
         bankAccount.setAccountType("Savings Account");
         bankAccount.payInterest();
-        assertThat(bankAccount.getBalance()).isEqualTo(110);
+        assertThat(round(bankAccount.getBalance())).isEqualTo(110);
         bankAccount.payInterest();
-        assertThat(bankAccount.getBalance()).isEqualTo(121);
+        assertThat(round(bankAccount.getBalance())).isEqualTo(121);
     }
     @Test
     void overdraft(){
-        BankAccount bankAccount = new BankAccount();
         bankAccount.withdraw(100);
         assertThat(bankAccount.getBalance()).isEqualTo(-100);
         bankAccount.withdraw(500);
         assertThat(bankAccount.withdraw(500)).isEqualTo(1);
         assertThat(bankAccount.getBalance()).isEqualTo(-100);
     }
-
-
-
-
-
-
 }
